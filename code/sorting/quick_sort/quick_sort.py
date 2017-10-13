@@ -1,40 +1,11 @@
-def quickSort(arr):
-   quickSortHelper(arr,0,len(arr)-1)
+#Part of Cosmos by OpenGenus Foundation
 
-def quickSortHelper(arr,first,last):
-   if first<last:
+l = [int(x) for x in input().split()]
 
-       splitpoint = partition(arr,first,last)
+def Qsort(a):
+    if len(a)<=1:
+        return a
+    else:
+        return Qsort([x for x in a[1:] if x<a[0]]) + [a[0]]+ Qsort([x for x in a[1:] if x>=a[0]])
 
-       quickSortHelper(arr,first,splitpoint-1)
-       quickSortHelper(arr,splitpoint+1,last)
-
-
-def partition(arr,first,last):
-   pivot = arr[first]
-
-   left = first+1
-   right = last
-
-   done = False
-   while not done:
-
-       while left <= right and arr[left] <= pivot:
-           left = left + 1
-
-       while arr[right] >= pivot and right >= left:
-           right = right -1
-
-       if right < left:
-           done = True
-       else:
-           temp = arr[left]
-           arr[left] = arr[right]
-           arr[right] = temp
-
-   temp = arr[first]
-   arr[first] = arr[right]
-   arr[right] = temp
-
-
-   return right
+print(Qsort(l))
